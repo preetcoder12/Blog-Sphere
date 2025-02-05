@@ -22,11 +22,10 @@ router.post('/signup', async (req, res) => {
             email,
             password,
         });
-        console.log("User created:", user); // Log the created user for debugging
         return res.redirect('/user/signin');
     } catch (error) {
         console.error("Error creating user:", error); // Log the error
-        return res.render("signup", { error: "An error occurred during signup" });
+        return res.render("signup", { error: "User already exist" });
     }
 });
 
@@ -38,7 +37,6 @@ router.post('/signin', async(req, res) => {
     }
     try {
         const token = await User.matchpasswordAndGenerateToken(email, password);
-        console.log("token : ", token)
         return res.cookie("token", token).redirect('/');
     } catch (error) {
         return res.render("signin", { error: "Incorrect email or password" });

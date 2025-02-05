@@ -35,10 +35,7 @@ userschema.pre("save", function (next) {
     if (!user.isModified("password")) return next();
 
     const salt = randomBytes(16).toString("hex");  // Ensure hex encoding
-    const hashedpass = createHmac('sha256', salt).update(user.password).digest('hex');
-    
-    console.log("Hashed password:", hashedpass); // Debugging
-    
+    const hashedpass = createHmac('sha256', salt).update(user.password).digest('hex');    
     this.salt = salt;
     this.password = hashedpass;
     next();
@@ -61,7 +58,6 @@ userschema.static("matchpasswordAndGenerateToken", async function (email, passwo
     
     
     const token = createToken(user);
-    console.log("Token :",token);
     return token;
 })
 
