@@ -3,69 +3,112 @@
 
 <head>
     <%- include('./partials/head') %>
-    <title>homepage</title>
+    <title>Homepage</title>
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF8F2; /* Soft warm background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #D95D39; /* Warm coral color */
+        }
+
         .card {
-            width: 18rem;
-            /* height: 350px; Fixed height for uniformity */
+            width: 100%;
+            height: auto;
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #FFF; /* White for cards */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .card:hover {
-            transform: scale(1.045);
-            transition: all ease-in-out 0.5s;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .card-img-top {
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.1);
         }
 
         .card-body {
-            padding: 15px;
-            flex-grow: 1;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
+            color: #D95D39; /* Warm coral color */
         }
 
         .card-text {
             font-size: 1rem;
-            color: #555;
+            color: #666;
+            line-height: 1.6;
         }
 
         .card .btn-primary {
             margin-top: auto;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            background: linear-gradient(45deg, #F6A58C, #FF6B6B); /* Light orange to coral gradient */
             border: none;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             font-size: 1rem;
             font-weight: bold;
             border-radius: 5px;
             transition: 0.3s ease-in-out;
+            cursor: pointer;
         }
 
         .card .btn-primary:hover {
-            background: linear-gradient(45deg, #ff8e53, #ff6b6b);
-            transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #FF6B6B, #F6A58C);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 
 <body>
     <%- include('./partials/navbar') %>
-   
+
     <div class="container mt-3">
+        <h1>Blogs</h1>
         <div class="row">
             <% blogs.forEach(blog => { %>
                 <div class="col-md-4">
@@ -83,6 +126,7 @@
             <% }) %>
         </div>
     </div>
+
     <%- include('./partials/script') %>
 </body>
 

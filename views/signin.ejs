@@ -3,26 +3,107 @@
 
 <head>
     <%- include('./partials/head') %>
-        <title>Signin</title>
+    <title>Signin</title>
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .form-text {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .form-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
     <%- include('./partials/navbar') %>
-        <div class="container">
-            <form action="/user/signin" method="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" name="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-        </div>
-        <%- include('./partials/script') %>
+    <div class="container">
+        <h2>Signin</h2>
+        <form action="/user/signin" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <p class="form-text">Don't have an account? <a href="/user/signup">Sign up here</a></p>
+    </div>
+    <%- include('./partials/script') %>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-const { Schema ,model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const blogschema = new Schema({
     title: {
@@ -8,6 +8,9 @@ const blogschema = new Schema({
     body: {
         type: String,
         required: true
+    },
+    link: {
+        type: String,
     },
     coverImage: {
         type: String,
@@ -20,4 +23,4 @@ const blogschema = new Schema({
 
 const Blog = model('blog', blogschema);
 
-module.exports =   Blog;
+module.exports = Blog;

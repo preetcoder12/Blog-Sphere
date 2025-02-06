@@ -26,11 +26,12 @@ const upload = multer({ storage: storage })
 
 
 router.post('/', upload.single('coverImage'), async (req, res) => {
-    const { title, body } = req.body
+    const { title, body, link } = req.body
 
     const blog = await Blog.create({
         body,
         title,
+        link,
         createdBy: req.user._id,
         coverImage: `/upload/${req.file.filename}`
 
@@ -40,10 +41,10 @@ router.post('/', upload.single('coverImage'), async (req, res) => {
 
 
 router.get('/:id', async (req, res) => {
-    const blog = await Blog.findById(req.params.id).populate('createdBy'); // lowercase 'c', user
-    const comments = await Comment.find({ blogid: req.params.id }); // lowercase 'c', user
-    console.log("blog: ",blog); // Log the comments array
-    console.log("comments: ",comments); // Log the comments array
+    const blog = await Blog.findById(req.params.id).populate('createdBy');
+    const comments = await Comment.find({ blogid: req.params.id });
+    console.log("blog: ", blog); // Log the comments array
+    console.log("comments: ", comments); // Log the comments array
 
     return res.render("readblog", {
         user: req.user,
@@ -57,7 +58,6 @@ router.post('/comment/:id', async (req, res) => {
         content: req.body.comment, // Correct field name
         createdBy: req.user._id,
         blogid: req.params.id
-
     })
     res.redirect(`/blog/${req.params.id}`);
 })

@@ -4,24 +4,88 @@
 <head>
     <%- include('./partials/head') %>
     <title>BlogSphere</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #D95D39;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #D95D39;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #D95D39;
+            box-shadow: 0 0 5px rgba(217, 93, 57, 0.5);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(45deg, #ff8e53, #ff6b6b);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
     <%- include('./partials/navbar') %>
-    <div class="container mt-3">
+    <div class="container">
+        <h1>Add New Blog</h1>
         <form method="post" action="/blog" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="coverImage" class="form-label">Cover image</label>
+                <label for="coverImage" class="form-label">Cover Image</label>
                 <input type="file" class="form-control" id="coverImage" name="coverImage" aria-describedby="coverImage">
-                
+            </div>
+            <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" aria-describedby="title">
-                
+            </div>
+            <div class="mb-3">
                 <label for="body" class="form-label">Content</label>
                 <textarea class="form-control" id="body" name="body" aria-describedby="body"></textarea>
-                
-                <button type="submit" class="btn btn-success">Submit</button>
             </div>
+            <div class="mb-3">
+                <label for="link" class="form-label">Any Link</label>
+                <textarea class="form-control" id="link" name="link" aria-describedby="link"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
     <%- include('./partials/script') %>
