@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
 const userroutes = require('./routes/users')
@@ -7,10 +8,10 @@ const cookieparser = require("cookie-parser");
 const { checkForAuthentication } = require('./middleware/auth')
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/blogsphere')
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("MongoDB connected"))
 
-const port = 8000;
+const PORT = process.env.PORT||8000;  //process.env.PORT provide dynamic  ports to sers when we Host it onlin 
 
 const app = express();
 app.set("view engine", "ejs");
@@ -38,8 +39,8 @@ app.get('/user/logout', (req, res) => {
 app.use('/user', userroutes);
 app.use('/blog', blogRoutes);
 
-app.listen(port, () => {
-    console.log(`Server is running at ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running at ${PORT}`);
 })
 
 
