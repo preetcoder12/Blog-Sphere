@@ -19,15 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // Ensure JSON parsing
 app.use(cookieparser());
 app.use(checkForAuthentication("token"))
-app.use(express.static(path.resolve('./public')))//as w know that nodejs takes address of images url so to make it static we use express.static
+app.use(express.static(path.resolve('./public')))//as we know that nodejs takes address of images url so to make it static we use express.static
 
 const Blog = require("./models/blogs")
 
-app.get('/', async(req, res) => {
+app.get('/', async (req, res) => {
     const allblogs = await Blog.find({});
     return res.render("home", {
         user: req.user || null,
-        blogs:allblogs
+        blogs: allblogs,
     });
 });
 
@@ -35,8 +35,8 @@ app.get('/user/logout', (req, res) => {
     res.clearCookie("token").redirect('/user/signin')
 })
 
-app.use('/user', userroutes );
-app.use('/blog', blogRoutes );
+app.use('/user', userroutes);
+app.use('/blog', blogRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running at ${port}`);

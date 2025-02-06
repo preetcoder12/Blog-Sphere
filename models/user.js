@@ -21,7 +21,8 @@ const userschema = new Schema({
     },
     profileImg: {
         type: String,
-        default: './images/defaultimg.png',
+        default: '/image/defaultimg.png', // Note the leading slash
+
     },
     roles: {
         type: String,
@@ -35,7 +36,7 @@ userschema.pre("save", function (next) {
     if (!user.isModified("password")) return next();
 
     const salt = randomBytes(16).toString("hex");  // Ensure hex encoding
-    const hashedpass = createHmac('sha256', salt).update(user.password).digest('hex');    
+    const hashedpass = createHmac('sha256', salt).update(user.password).digest('hex');
     this.salt = salt;
     this.password = hashedpass;
     next();
@@ -55,8 +56,8 @@ userschema.static("matchpasswordAndGenerateToken", async function (email, passwo
     if (hashedPassword !== userprovidedHashed) {
         throw new Error("Incorrect email or password");
     }
-    
-    
+
+
     const token = createToken(user);
     return token;
 })
